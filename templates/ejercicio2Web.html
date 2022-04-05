@@ -1,0 +1,12 @@
+<title>Paginas web vulnerables</title>
+
+<h1>TOP 5 DE PAGINAS WEBS VULNERABLES</h1>
+
+{% if graphJSON_webs %}
+ <div id='chart' class='chart'”></div>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script type='text/javascript'>
+      var graphs = {{graphJSON_webs | safe}};
+      Plotly.plot('chart',graphs,{});
+    </script>
+{% endif %}

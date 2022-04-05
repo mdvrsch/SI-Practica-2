@@ -1,0 +1,13 @@
+<title>Usuarios criticos</title>
+
+<h1>TOP 10 DE USUARIOS CRITICOS</h1>
+
+{% if graphJSON_user %}
+  <div id='chart' class='chart'”></div>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script type='text/javascript'>
+      var graphs = {{graphJSON_user | safe}};
+      Plotly.plot('chart',graphs,{});
+    </script>
+
+{% endif %}

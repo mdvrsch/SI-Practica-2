@@ -1,0 +1,184 @@
+{
+  "contrasenas": [
+    {
+      "sergio.garcia": {
+        "contrasena": "6aa2ab5334956e999997539cd9035ae0",
+        "vulnerable": 0
+      }
+    },
+    {
+      "luis.munoz": {
+        "contrasena": "eace8d19d31a304e95c409ab819079a7",
+        "vulnerable": 0
+      }
+    },
+    {
+      "pepe.suarez": {
+        "contrasena": "5f4dcc3b5aa765d61d8327deb882cf99",
+        "vulnerable": 1
+      }
+    },
+    {
+      "julio.martinez": {
+        "contrasena": "3bf1114a986ba87ed28fc1b5884fc2f8",
+        "vulnerable": 1
+      }
+    },
+    {
+      "sara.lozano": {
+        "contrasena": "a3ff7b065d6e0919200ce26642c87b60",
+        "vulnerable": 0
+      }
+    },
+    {
+      "ines.diaz": {
+        "contrasena": "058755b89fbec19a8f13a48d395cd42f",
+        "vulnerable": 0
+      }
+    },
+    {
+      "juan.lopez": {
+        "contrasena": "276f8db0b86edaa7fc805516c852c889",
+        "vulnerable": 1
+      }
+    },
+    {
+      "luzmaria.lozano": {
+        "contrasena": "84d961568a65073a3bcf0eb216b2a576",
+        "vulnerable": 1
+      }
+    },
+    {
+      "alicia.castro": {
+        "contrasena": "0acf4539a14b3aa27deeb4cbdf6e989f",
+        "vulnerable": 1
+      }
+    },
+    {
+      "directivo": {
+        "contrasena": "37386d73866a7ecfa68464c681d7f366",
+        "vulnerable": 0
+      }
+    },
+    {
+      "administrador": {
+        "contrasena": "6522005376b658a8ae437f2553e8fa7a",
+        "vulnerable": 0
+      }
+    },
+    {
+      "contacto": {
+        "contrasena": "1660fe5c81c4ce64a2611494c439e1ba",
+        "vulnerable": 1
+      }
+    },
+    {
+      "no-reply": {
+        "contrasena": "d16d377af76c99d27093abc22244b342",
+        "vulnerable": 1
+      }
+    },
+    {
+      "ceo": {
+        "contrasena": "d073536bba0de057994e2be46bb64a04",
+        "vulnerable": 0
+      }
+    },
+    {
+      "contrataciones": {
+        "contrasena": "eb0a191797624dd3a48fa681d3061212",
+        "vulnerable": 1
+      }
+    },
+    {
+      "legal": {
+        "contrasena": "607693c5fef9a92c91e914d274b988c6",
+        "vulnerable": 0
+      }
+    },
+    {
+      "inteligencia-artificial": {
+        "contrasena": "bf787578e2c6e374529ba85b218322c1",
+        "vulnerable": 0
+      }
+    },
+    {
+      "personal": {
+        "contrasena": "e90988574b3f2078b73d98d291db85f8",
+        "vulnerable": 0
+      }
+    },
+    {
+      "jesus.duarte": {
+        "contrasena": "62e2f762af3518bf3a7b14d4414e3fb7",
+        "vulnerable": 0
+      }
+    },
+    {
+      "raul.perez": {
+        "contrasena": "714ab9fbdad5c5da1b5d34fe1a093b79",
+        "vulnerable": 1
+      }
+    },
+    {
+      "javier.osorio": {
+        "contrasena": "5b628ede9539b225d683ce4a9cb797d8",
+        "vulnerable": 0
+      }
+    },
+    {
+      "eduardo.galan": {
+        "contrasena": "8e7910d5ba9a04d791aba89ab75d3adb",
+        "vulnerable": 0
+      }
+    },
+    {
+      "enrique.sanz": {
+        "contrasena": "d8578edf8458ce06fbc5bb76a58c5ca4",
+        "vulnerable": 1
+      }
+    },
+    {
+      "info": {
+        "contrasena": "cf3bc4839182dafee429b4ae7a415ec9",
+        "vulnerable": 0
+      }
+    },
+    {
+      "leo.moran": {
+        "contrasena": "55ca44dabad13a109b038fe2f694b7dd",
+        "vulnerable": 0
+      }
+    },
+    {
+      "ivan.fernandez": {
+        "contrasena": "4297f44b13955235245b2497399d7a93",
+        "vulnerable": 1
+      }
+    },
+    {
+      "clara.marin": {
+        "contrasena": "37b4e2d82900d5e94b8da524fbeb33c0",
+        "vulnerable": 1
+      }
+    },
+    {
+      "virgnia.cruz": {
+        "contrasena": "d0763edaa9d9bd2a9516280e9044d885",
+        "vulnerable": 1
+      }
+    },
+    {
+      "pruebas": {
+        "contrasena": "ff91144bcc200fe870bdf2136ac59930",
+        "vulnerable": 0
+      }
+    },
+    {
+      "fran.moreno": {
+        "contrasena": "a152e841783914146e4bcd4f39100686",
+        "vulnerable": 1
+      }
+    }
+  ]
+}
