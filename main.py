@@ -28,7 +28,7 @@ def index():
    return render_template('index.html')
 
 
-@app.route('/ejercicio2/usuarios/criticos')
+@app.route('/index/ejercicio2/usuarios/criticos')
 def ejercicio2_usuariosCriticos():
     con = sqlite3.connect('database.db')
 
@@ -52,7 +52,7 @@ def ejercicio2_usuariosCriticos():
     import plotly
     a = plotly.utils.PlotlyJSONEncoder
     graphJSON_user = json.dumps(fig, cls=a)
-    return render_template('ejercicio2User.html', graphJSON_user=graphJSON_user)
+    return render_template('index.html', graphJSON_user=graphJSON_user)
 
 
 @app.route('/ejercicio2/webs/vulnerables')
