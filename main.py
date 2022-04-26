@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import sqlite3
 import pandas as pd
 
-
+#hola
 app = Flask(__name__)
 
 def dataframe_contra(con):
