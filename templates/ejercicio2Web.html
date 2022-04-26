@@ -2,6 +2,11 @@
 
 <h1>TOP 5 DE PAGINAS WEBS VULNERABLES</h1>
 
+<form method="POST">
+    Asset Tag:<br>
+    <input type="text" name="tag"><br>
+    <input type="submit" value="Submit">
+</form>
 {% if graphJSON_webs %}
  <div id='chart' class='chart'”></div>
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
@@ -9,4 +14,7 @@
       var graphs = {{graphJSON_webs | safe}};
       Plotly.plot('chart',graphs,{});
     </script>
+
+
+
 {% endif %}

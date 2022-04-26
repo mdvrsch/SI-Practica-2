@@ -36,7 +36,7 @@ def index():
 
 @app.route('/ejercicio2/usuarios/criticos')
 def ejercicio2_usuariosCriticos():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('D:\sitema\javi\GitHub\SI-Practica-2\D:\sitema\javi\GitHub\SI-Practica-2\database.db')
     df_contra = dataframe_contra(con)
     df_users = dataframe_users(con)
 
@@ -60,18 +60,24 @@ def ejercicio2_usuariosCriticos():
     return render_template('ejercicio2User.html', graphJSON_user=graphJSON_user)
 
 
-@app.route('/ejercicio2/webs/vulnerables')
+@app.route('/ejercicio2/webs/vulnerables',methods=['GET', 'POST'])
 def ejercicio2_websVulnerables():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('D:\sitema\javi\GitHub\SI-Practica-2\database.db')
     df_desactualizadas = dataframe_desactualizadas(con)
+    x=0
+    if request.method == 'POST':
+        # Then get the data from the form
+        tag = request.form['tag']
+        x=int(tag)
 
-    # TOP X DE PAGINAS WEBS VULNERABLES
+
+# TOP X DE PAGINAS WEBS VULNERABLES
     df_desactualizadas["cookies"] = df_desactualizadas["cookies"].astype(int)
     df_desactualizadas["aviso"] = df_desactualizadas["aviso"].astype(int)
     df_desactualizadas["proteccion"] = df_desactualizadas["proteccion"].astype(int)
     df_desactualizadas["desactualizadas"] = 3 - (df_desactualizadas[["cookies", "aviso", "proteccion"]].sum(axis=1))
     df_desactualizadas = df_desactualizadas.sort_values("desactualizadas", ascending=False)
-    df_desactualizadas = df_desactualizadas.head(n=5)
+    df_desactualizadas = df_desactualizadas.head(n=x)
     #df_desactualizadas = df_desactualizadas.drop(["desactualizadas"], axis=1)
 
     fig = go.Figure(
@@ -85,18 +91,44 @@ def ejercicio2_websVulnerables():
     return render_template('ejercicio2Web.html', graphJSON_webs=graphJSON_webs)
 
 
+
+@app.route('/dssd', methods=['GET', 'POST'])
+def server():
+
+    if request.method == 'POST':
+        # Then get the data from the form
+        tag = request.form['tag']
+
+        # Get the username/password associated with this tag
+
+
+        # Generate just a boring response
+        return 'The credentials for %s ' % (tag)
+        # Or you could have a custom template for displaying the info
+        # return render_template('asset_information.html',
+        #                        username=user,
+        #                        password=password)
+
+    # Otherwise this was a normal GET request
+    else:
+        return render_template('ejercicio2Web.html')
+
+
 @app.route('/ejercicio3/info/menos50')
 def ejercicio3_menos50():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('D:\sitema\javi\GitHub\SI-Practica-2\database.db')
     df_emails = dataframe_emails(con)
 
-    df_emails["email_cliclados"] = df_emails["email_cliclados"].astype(int)
-    df_emails_menos = df_emails[df_emails["email_cliclados"] < 50]
+    df_emails["email_cliclados"] = df_emails["email_cliclados"].astype(float)
+    df_emails["email_phishing"]=df_emails["email_phishing"].astype(float)
+    df_emails["probabilidad"]=(( df_emails["email_cliclados"]/df_emails["email_phishing"])*100).astype(float)
+    df_emails_menos = df_emails[df_emails["probabilidad"] < 50]
+
 
     print(df_emails_menos)
 
     fig1 = go.Figure(
-        data=[go.Bar(x=df_emails_menos["nombre"], y=df_emails_menos["email_cliclados"])],
+        data=[go.Bar(x=df_emails_menos["nombre"], y=df_emails_menos["probabilidad"])],
         layout_title_text="Gráfica usuarios que han cliclado < 50 emails de spam"
     )
 
@@ -108,14 +140,16 @@ def ejercicio3_menos50():
 
 @app.route('/ejercicio3/info/mas50')
 def ejercicio3_mas50():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('D:\sitema\javi\GitHub\SI-Practica-2\database.db')
     df_emails = dataframe_emails(con)
 
-    df_emails["email_cliclados"] = df_emails["email_cliclados"].astype(int)
-    df_emails_mas = df_emails[df_emails["email_cliclados"] >= 50]
+    df_emails["email_cliclados"] = df_emails["email_cliclados"].astype(float)
+    df_emails["email_phishing"]=df_emails["email_phishing"].astype(float)
+    df_emails["probabilidad"]=(( df_emails["email_cliclados"]/df_emails["email_phishing"])*100).astype(float)
+    df_emails_mas = df_emails[df_emails["probabilidad"] >= 50]
 
     fig2 = go.Figure(
-        data=[go.Bar(x=df_emails_mas["nombre"], y=df_emails_mas["email_cliclados"])],
+        data=[go.Bar(x=df_emails_mas["nombre"], y=df_emails_mas["probabilidad"])],
         layout_title_text="Gráfica usuarios que han cliclado >= 50 emails de spam"
     )
 
