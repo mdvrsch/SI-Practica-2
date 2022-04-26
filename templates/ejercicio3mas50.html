@@ -1,0 +1,12 @@
+<title>Información sobre los usuarios</title>
+
+<h1>INFORMACIÓN USUARIOS CRITICOS</h1>
+
+{% if graphJSON_mas %}
+  <div id='chart' class='chart'”></div>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script type='text/javascript'>
+      var graphs = {{graphJSON_mas | safe}};
+      Plotly.plot('chart',graphs,{});
+    </script>
+{% endif %}
