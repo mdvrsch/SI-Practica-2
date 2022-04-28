@@ -1,7 +1,12 @@
 <title>Usuarios criticos</title>
 
-<h1>TOP 10 DE USUARIOS CRITICOS</h1>
+<h1>TOP X DE USUARIOS CRITICOS</h1>
 
+<form method="POST">
+    Selecciona el Top X:<br>
+    <input type="text" name="tag"><br>
+    <input type="submit" value="Submit">
+</form>
 {% if graphJSON_user %}
   <div id='chart' class='chart'”></div>
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
@@ -9,5 +14,4 @@
       var graphs = {{graphJSON_user | safe}};
       Plotly.plot('chart',graphs,{});
     </script>
-
 {% endif %}

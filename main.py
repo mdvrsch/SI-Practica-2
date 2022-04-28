@@ -34,11 +34,17 @@ def index():
    return render_template('index.html')
 
 
-@app.route('/ejercicio2/usuarios/criticos')
+@app.route('/ejercicio2/usuarios/criticos', methods=['GET', 'POST'])
 def ejercicio2_usuariosCriticos():
-    con = sqlite3.connect('D:\sitema\javi\GitHub\SI-Practica-2\D:\sitema\javi\GitHub\SI-Practica-2\database.db')
+    con = sqlite3.connect('database.db')
     df_contra = dataframe_contra(con)
     df_users = dataframe_users(con)
+
+    x = 0
+    if request.method == 'POST':
+        # Then get the data from the form
+        tag = request.form['tag']
+        x = int(tag)
 
     # TOP X USUARIOS CRITICOS
     df_contra["vulnerable"] = df_contra["vulnerable"].astype(int)
@@ -46,7 +52,7 @@ def ejercicio2_usuariosCriticos():
     df_contra_debil = df_critico[df_critico["vulnerable"] == 1]
     df_contra_debil["probabilidad"] = (df_contra_debil["email_cliclados"].astype(float) / df_contra_debil["email_phishing"].astype(float)) * 100
     df_contra_debil = df_contra_debil.sort_values("probabilidad", ascending=False)
-    df_contra_debil = df_contra_debil.head(n=10)
+    df_contra_debil = df_contra_debil.head(n=x)
     df_contra_debil = df_contra_debil.drop(["vulnerable"], axis=1)
 
     fig = go.Figure(
@@ -60,25 +66,24 @@ def ejercicio2_usuariosCriticos():
     return render_template('ejercicio2User.html', graphJSON_user=graphJSON_user)
 
 
-@app.route('/ejercicio2/webs/vulnerables',methods=['GET', 'POST'])
+@app.route('/ejercicio2/webs/vulnerables', methods=['GET', 'POST'])
 def ejercicio2_websVulnerables():
-    con = sqlite3.connect('D:\sitema\javi\GitHub\SI-Practica-2\database.db')
+    con = sqlite3.connect('database.db')
     df_desactualizadas = dataframe_desactualizadas(con)
-    x=0
+
+    x = 0
     if request.method == 'POST':
         # Then get the data from the form
         tag = request.form['tag']
-        x=int(tag)
+        x = int(tag)
 
-
-# TOP X DE PAGINAS WEBS VULNERABLES
+    # TOP X DE PAGINAS WEBS VULNERABLES
     df_desactualizadas["cookies"] = df_desactualizadas["cookies"].astype(int)
     df_desactualizadas["aviso"] = df_desactualizadas["aviso"].astype(int)
     df_desactualizadas["proteccion"] = df_desactualizadas["proteccion"].astype(int)
     df_desactualizadas["desactualizadas"] = 3 - (df_desactualizadas[["cookies", "aviso", "proteccion"]].sum(axis=1))
     df_desactualizadas = df_desactualizadas.sort_values("desactualizadas", ascending=False)
     df_desactualizadas = df_desactualizadas.head(n=x)
-    #df_desactualizadas = df_desactualizadas.drop(["desactualizadas"], axis=1)
 
     fig = go.Figure(
         data=[go.Bar(x=df_desactualizadas["nombre"], y=df_desactualizadas["desactualizadas"])],
@@ -89,29 +94,6 @@ def ejercicio2_websVulnerables():
     a = plotly.utils.PlotlyJSONEncoder
     graphJSON_webs = json.dumps(fig, cls=a)
     return render_template('ejercicio2Web.html', graphJSON_webs=graphJSON_webs)
-
-
-
-@app.route('/dssd', methods=['GET', 'POST'])
-def server():
-
-    if request.method == 'POST':
-        # Then get the data from the form
-        tag = request.form['tag']
-
-        # Get the username/password associated with this tag
-
-
-        # Generate just a boring response
-        return 'The credentials for %s ' % (tag)
-        # Or you could have a custom template for displaying the info
-        # return render_template('asset_information.html',
-        #                        username=user,
-        #                        password=password)
-
-    # Otherwise this was a normal GET request
-    else:
-        return render_template('ejercicio2Web.html')
 
 
 @app.route('/ejercicio3/info/menos50')
