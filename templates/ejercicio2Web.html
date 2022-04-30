@@ -1,17 +1,48 @@
-<title>Paginas web vulnerables</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Rubic landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Webs vulnerables</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + CMI main styles -->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/css/rubic.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40">
 
-<h1>TOP X DE PAGINAS WEBS VULNERABLES</h1>
+<section class="section">
+    <div class="container text-center">
+        <h6 class="display-4 has-line">Top X de páginas web vulnerables</h6>
+        <p class="mb-5 pb-4">Selecciona el número de páginas web vulnerables que quieras ver.</p>
+        <div class="container text-center">
+            <form method="POST">
+                Selecciona el Top X:<br>
+                <input type="text" name="tag"><br>
+                <input type="submit" value="Submit">
+            </form>
+            {% if graphJSON_webs %}
+                <div id='chart' class='chart' ”></div>
+                <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+                <script type='text/javascript'>
+                    var graphs = {{graphJSON_webs | safe}};
+                    Plotly.plot('chart', graphs, {});
+                </script>
+            {% endif %}
+        </div>
+    </div>
+</section>
 
-<form method="POST">
-    Selecciona el Top X:<br>
-    <input type="text" name="tag"><br>
-    <input type="submit" value="Submit">
-</form>
-{% if graphJSON_webs %}
-  <div id='chart' class='chart'”></div>
-    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <script type='text/javascript'>
-      var graphs = {{graphJSON_webs | safe}};
-      Plotly.plot('chart',graphs,{});
-    </script>
-{% endif %}
+<!-- core  -->
+<script src="http://127.0.0.1:5000/static/assets/vendors/jquery/jquery-3.4.1.js"></script>
+<script src="http://127.0.0.1:5000/static/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+<!-- bootstrap 3 affix -->
+<script src="http://127.0.0.1:5000/static/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+<!-- Rubic js -->
+<script src="http://127.0.0.1:5000/static/assets/js/rubic.js"></script>
+
+</body>
+</html>
