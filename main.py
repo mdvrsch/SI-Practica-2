@@ -63,9 +63,7 @@ def ejercicio2_usuariosCriticos():
     df_contra_debil = df_contra_debil.drop(["vulnerable"], axis=1)
 
     fig = go.Figure(
-        data=[go.Bar(x=df_contra_debil["nombre"], y=df_contra_debil["probabilidad"])],
-        layout_title_text="Gráfica resultante"
-    )
+        data=[go.Bar(x=df_contra_debil["nombre"], y=df_contra_debil["probabilidad"])])
 
     import plotly
     a = plotly.utils.PlotlyJSONEncoder
@@ -93,9 +91,7 @@ def ejercicio2_websVulnerables():
     df_desactualizadas = df_desactualizadas.head(n=x)
 
     fig = go.Figure(
-        data=[go.Bar(x=df_desactualizadas["nombre"], y=df_desactualizadas["desactualizadas"])],
-        layout_title_text="Gráfica resultante"
-    )
+        data=[go.Bar(x=df_desactualizadas["nombre"], y=df_desactualizadas["desactualizadas"])])
 
     import plotly
     a = plotly.utils.PlotlyJSONEncoder
@@ -126,7 +122,7 @@ def ejercicio3_menos50():
 
     fig1 = go.Figure(
         data=[go.Bar(x=df_emails_menos["nombre"], y=df_emails_menos["probabilidad"])],
-        layout_title_text="Gráfica usuarios que han cliclado < 50 emails de spam"
+        layout_title_text="Usuarios que han cliclado menos del 50% de emails de spam"
     )
 
     import plotly
@@ -155,7 +151,7 @@ def ejercicio3_mas50():
 
     fig2 = go.Figure(
         data=[go.Bar(x=df_emails_mas["nombre"], y=df_emails_mas["probabilidad"])],
-        layout_title_text="Gráfica usuarios que han cliclado >= 50 emails de spam"
+        layout_title_text="Usuarios que han cliclado más del 50% de emails de spam"
     )
 
     import plotly
@@ -176,7 +172,7 @@ def ejercicio4_vul():
 
     fig = go.Figure(
         data=[go.Line(x=df_vul["id"].head(n=10), y=df_vul["last-modified"].head(n=10))],
-        layout_title_text="Gráfica últimas 10 vulnerabilidades en tiempo real"
+        layout_title_text="Últimas 10 vulnerabilidades en tiempo real"
     )
 
     import plotly
