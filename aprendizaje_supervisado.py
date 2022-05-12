@@ -1,3 +1,5 @@
+from pathlib import WindowsPath
+from subprocess import call
 import matplotlib.pyplot as plt
 import numpy as np
 import json
@@ -72,16 +74,6 @@ clf = tree.DecisionTreeClassifier()
 clf = clf.fit(data_x_train, data_y_train)
 print(clf.predict(np.array(data_x_test)))
 
-'''
-# Código que muestra el grafo en la consola de comandos
-text_representation = tree.export_text(clf)
-print(text_representation)
-
-#Print plot
-fig = plt.figure(figsize=(25,20))
-imagen = tree.plot_tree(clf, feature_names=str(data_x_test), class_names=str(data_y_test), filled=True)
-fig.savefig("decistion_tree.png")
-'''
 
 dot_data = tree.export_graphviz(clf, out_file=None)
 graph = graphviz.Source(dot_data)
@@ -89,6 +81,7 @@ graph.render("decisionTree")
 dot_data = tree.export_graphviz(clf, out_file=None, filled=True, rounded=True, special_characters=True)
 graph = graphviz.Source(dot_data)
 graph.render('decisionTree.gv', view=True).replace('\\', '/')
+call([WindowsPath('dot'), '-Kdot', '-Tpdf', '-o', 'decisionTree'])
 
 '''
 # RANDOM FOREST
