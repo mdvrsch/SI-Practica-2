@@ -1,16 +1,10 @@
-import json
-from subprocess import call
-
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-from sklearn import datasets, linear_model
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import mean_squared_error, r2_score
-from sklearn import tree
-from sklearn.datasets import load_iris
+import numpy as np
+import json
+from sklearn import linear_model, tree
+from sklearn.metrics import mean_squared_error
 import graphviz
-from sklearn.tree import export_graphviz
+
 
 with open('users_IA_clases.json') as file:
     data_users_entrenamiento = json.load(file)
@@ -68,17 +62,6 @@ plt.scatter(np.array(x), np.array(data_y_test), color="black")
 plt.plot((m[0][0]*np.array(x))+b, np.array(x))
 plt.show()
 
-# RANDOM FOREST
-X,y = data_x_train, data_y_train
-clf = RandomForestClassifier(max_depth=2, random_state=0,n_estimators=10)
-clf = clf.fit(data_x_train, data_y_train)
-print(str(X[0]) + " " + str(y[0]))
-print(clf.predict([X[0]]))
-
-for i in range(len(clf.estimators_)):
-    estimator = clf.estimators_[i]
-    export_graphviz(estimator, out_file='RandomForest.dot', rounded=True, proportion=False,precision=2, filled=True)
-    call(['dot','-Tpng', 'RandomForest.dot','-o','RandomForest'+str(i)+'.png','-Gdpi=600'])
 
 
 # DECISION TREE
@@ -87,7 +70,9 @@ for i in range(len(clf.estimators_)):
 X,y = data_x_train, data_y_train
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(data_x_train, data_y_train)
+print(clf.predict(np.array(data_x_test)))
 
+'''
 # Código que muestra el grafo en la consola de comandos
 text_representation = tree.export_text(clf)
 print(text_representation)
@@ -96,15 +81,16 @@ print(text_representation)
 fig = plt.figure(figsize=(25,20))
 imagen = tree.plot_tree(clf, feature_names=str(data_x_test), class_names=str(data_y_test), filled=True)
 fig.savefig("decistion_tree.png")
+'''
 
 dot_data = tree.export_graphviz(clf, out_file=None)
 graph = graphviz.Source(dot_data)
 graph.render("decisionTree")
-dot_data = tree.export_graphviz(clf, out_file='decisionTree.dot', filled=True, rounded=True, special_characters=True)
+dot_data = tree.export_graphviz(clf, out_file=None, filled=True, rounded=True, special_characters=True)
 graph = graphviz.Source(dot_data)
-graph.render("decisionTree.gv", view=True).replace('\\','/')
+graph.render('decisionTree.gv', view=True).replace('\\', '/')
 
-
+'''
 # RANDOM FOREST
 X,y = data_x_train, data_y_train
 clf = RandomForestClassifier(max_depth=2, random_state=0,n_estimators=10)
@@ -116,8 +102,6 @@ for i in range(len(clf.estimators_)):
     estimator = clf.estimators_[i]
     export_graphviz(estimator, out_file='RandomForest.dot', rounded=True, proportion=False,precision=2, filled=True)
     call(['dot','-Tpng', 'RandomForest.dot','-o','RandomForest'+str(i)+'.png','-Gdpi=600'])
-
-
-
+'''
 
 
