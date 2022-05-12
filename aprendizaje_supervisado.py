@@ -4,8 +4,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import json
 from sklearn import linear_model, tree
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_squared_error
 import graphviz
+from sklearn.tree import export_graphviz
+from sklearn.metrics import accuracy_score
 
 
 with open('users_IA_clases.json') as file:
@@ -24,8 +27,8 @@ for user in data_users_entrenamiento["usuarios"]:
     else:
         data_x.append([0, 0])
 
-# REGRESION LINEAL
 
+# REGRESION LINEAL
 # Split the data into training/testing sets
 data_x_train = data_x[:-20]
 data_x_test = data_x[-20:]
@@ -64,37 +67,37 @@ plt.scatter(np.array(x), np.array(data_y_test), color="black")
 plt.plot((m[0][0]*np.array(x))+b, np.array(x))
 plt.show()
 
+print("Accuracy Regresión Lineal: ", accuracy_score(data_y_test, data_y_pred))
 
 
 # DECISION TREE
-
-#Predict
-X,y = data_x_train, data_y_train
+#Train and predict
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(data_x_train, data_y_train)
-print(clf.predict(np.array(data_x_test)))
+clf.predict(np.array(data_x_test))
 
-
+#Print plot
 dot_data = tree.export_graphviz(clf, out_file=None)
 graph = graphviz.Source(dot_data)
 graph.render("decisionTree")
 dot_data = tree.export_graphviz(clf, out_file=None, filled=True, rounded=True, special_characters=True)
 graph = graphviz.Source(dot_data)
 graph.render('decisionTree.gv', view=True).replace('\\', '/')
-call([WindowsPath('dot'), '-Kdot', '-Tpdf', '-o', 'decisionTree'])
 
-'''
+print("Accuracy Decision Tree: ", accuracy_score(data_y_test, clf.predict(np.array(data_x_test))))
+
 # RANDOM FOREST
-X,y = data_x_train, data_y_train
+#Train and predit
+X, Y = data_x_train, np.array(data_y_train)
 clf = RandomForestClassifier(max_depth=2, random_state=0,n_estimators=10)
-clf = clf.fit(data_x_train, data_y_train)
-print(str(X[0]) + " " + str(y[0]))
+clf.fit(X, Y[0:].ravel())
+print(str(X[0]) + " " + str(Y[0]))
 print(clf.predict([X[0]]))
+print("Accuracy Random Forest: ", accuracy_score(data_y_test, clf.predict(np.array(data_x_test))))
 
+#print plot
 for i in range(len(clf.estimators_)):
     estimator = clf.estimators_[i]
     export_graphviz(estimator, out_file='RandomForest.dot', rounded=True, proportion=False,precision=2, filled=True)
     call(['dot','-Tpng', 'RandomForest.dot','-o','RandomForest'+str(i)+'.png','-Gdpi=600'])
-'''
-
 
