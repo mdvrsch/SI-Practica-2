@@ -55,18 +55,27 @@
                 </div>
             </div>
             <div class="col-md-5 d-none d-md-block">
-                <form class="header-form">
+                <form class="header-form" action="/login" method="post">
                     <div class="head">Login</div>
                     <div class="body">
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email*">
+                            <input type="text"
+                                   name="username"
+                                   required
+                                   maxlength="255" class="form-control" placeholder="Username*">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password*">
+                            <input type="password"
+                                   name="password"
+                                   required class="form-control" placeholder="Password*">
                         </div>
+                        {{ error }}
                     </div>
                     <div class="footer">
-                        <button class="btn btn-primary btn-block">Iniciar sesión</button>
+                        <button class="btn btn-primary btn-block" type="submit" value="Login" id="login_button">Iniciar
+                            sesión
+                        </button>
+                        <input type="hidden" value="{{ redirection }}" name="redirection">
                     </div>
                 </form>
             </div>
@@ -172,27 +181,18 @@
         <p class="mb-5 pb-4">Descubre el resto de funcionalidades que ofrece nuestro CMI.</p>
         <div class="row">
             <div class="col-lg-4">
-                <div class="circle-100 mb-3">
-                    <i class="ti-light-bulb">
-                        <div id='chart' class='chart' ”></div>
-                        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-                        <script type='text/javascript'>
-                            var graphs = {{graphJSON_user | safe}};
-                            Plotly.plot('chart', graphs, {});
-                        </script>
-                    </i>
-                </div>
-                <h6 class="title mb-3">USUARIOS CRÍTICOS</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h6 class="title mb-3">IPs por usuario</h6>
+                <p>Número de IPs de cada usuario.</p>
+                <button class="btn btn-primary mt-3"
+                        onclick="location.href='http://127.0.0.1:5000/ejercicio5/ips'">Ver
+                </button>
             </div>
             <div class="col-lg-4">
-                <div class="circle-100 mb-3">
-                    <i class="ti-marker-alt">
-
-                    </i>
-                </div>
-                <h6 class="title mb-3">PÁGINAS WEB VULNERABLES</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h6 class="title mb-3">Conexiones al día por usuario.</h6>
+                <p>Número de conexiones al día por cada usuario.</p>
+                <button class="btn btn-primary mt-3"
+                        onclick="location.href='http://127.0.0.1:5000/ejercicio5'">Ver
+                </button>
             </div>
         </div>
     </div>
@@ -230,11 +230,11 @@
                         <button class="btn btn-primary mt-3"
                                 onclick="location.href='http://127.0.0.1:5000/'">Ver
                         </button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 <section class="section has-img-bg text-center">
@@ -274,9 +274,6 @@
 </section>
 <footer class="footer py-4 bg-dark text-light">
     <div class="container text-center">
-        <p class="mb-4 small">Copyright
-            <script>document.write(new Date().getFullYear())</script> &copy; <a
-                    href="http://www.devcrud.com">DevCRUD</a></p>
         <div class="social-links">
             <a href="https://www.facebook.com" class="link"><i class="ti-facebook"></i></a>
             <a href="https://www.twitter.com" class="link"><i class="ti-twitter-alt"></i></a>

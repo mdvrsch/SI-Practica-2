@@ -1,11 +1,13 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask import render_template
 from flask import request
+from flask_login import LoginManager, current_user, login_user, logout_user
+from hashlib import md5
 
 import json
-import plotly.graph_objects as go
 import sqlite3
 import pandas as pd
+import plotly.graph_objects as go
 import requests
 
 app = Flask(__name__)
@@ -30,8 +32,20 @@ def dataframe_desactualizadas(con):
 
 def dataframe_emails(con):
     df_emails = pd.read_sql_query(
-        "SELECT * FROM usuariosTable GROUP BY nombre", con)
+        "SELECT * FROM usuariosTable", con)
     return df_emails
+
+
+def dataframe_fechas(con):
+    df_fechas = pd.read_sql_query(
+        "SELECT * FROM fechasTable", con)
+    return df_fechas
+
+
+def dataframe_ips(con):
+    df_ips = pd.read_sql_query(
+        "SELECT * FROM ipsTable", con)
+    return df_ips
 
 
 @app.route('/index')
@@ -181,7 +195,75 @@ def ejercicio4_vul():
     return render_template('ejercicio4.html', graphJSON_vul=graphJSON_vul)
 
 
+# Ejercicio 5
+
+# Número de ips usadas por usuario
+
+@app.route('/ejercicio5/ips', methods=['GET', 'POST'])
+def ejercicio5():
+    con = sqlite3.connect('database.db')
+    df_ips = dataframe_ips(con)
+
+    fig = go.Figure(data=[go.Histogram(x=df_ips["nombre"], y=df_ips["ips"])])
+
+    import plotly
+    a = plotly.utils.PlotlyJSONEncoder
+    graphJSON_ips = json.dumps(fig, cls=a)
+    return render_template('ejercicio5.html', graphJSON_ips=graphJSON_ips)
+
+
+# Login
+
+app.config['SECRET_KEY'] = 'sistemas'
+login_manager = LoginManager(app)
+login_manager.login_view = "/login"
+
+from login import User, LoginForm
+
+con = sqlite3.connect('database.db')
+
+
+def get_user(username):
+    db_user = pd.read_sql_query("SELECT * FROM usuariosTable WHERE nombre=\'{}\'".format(username), con)
+    if db_user.size == 0:
+        return None
+    return db_user
+
+
+@login_manager.user_loader
+def user_loader(username):
+    if get_user(username) is not None:
+        return User(username)
+    return None
+
+
+from werkzeug.urls import url_parse
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    username = request.form.get("username")
+    password = request.form.get("password")
+    user = get_user(username)
+    if form.validate_on_submit():
+        user = get_user(form.email.data)
+        if user is not None and user.iloc[0]["contrasena"] == md5(bytes(password, 'utf-8')).hexdigest():
+            login_user(user, remember=form.remember_me.data)
+            next_page = request.args.get('next')
+            if not next_page or url_parse(next_page).netloc != '':
+                next_page = url_for('index')
+            return redirect(next_page)
+    return render_template('index.html', form=form)
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    logout_user()
+    return redirect("/")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-
