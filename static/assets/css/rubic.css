@@ -896,7 +896,7 @@ pre code {
     margin-left: 91.66667%;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 900px) {
     .col-sm {
         -webkit-flex-basis: 0;
         -ms-flex-preferred-size: 0;

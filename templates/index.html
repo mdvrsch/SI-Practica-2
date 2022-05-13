@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + CMI main styles -->
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/css/rubic.css">
+    </script>
+    <script>
+      function mostrar(id)
+      {
+         var objeto=document.getElementById(id)
+            objeto.style.display="block";
+      }
+      function ocultar(id)
+      {
+         var objeto=document.getElementById(id)
+            objeto.style.display="none";
+      }
+   </script>
+    <style>
+        .oculto {display:none;}
+    </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -208,8 +224,15 @@
                     <p class="description"><i>Regresión lineal</i></p>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
-                                onclick="location.href='http://127.0.0.1:5000/'">Ver
+                                onclick="mostrar('regresionLineal')">Ver
                         </button>
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png" class ="oculto" style="width: 700px">
+                    </div>
+                    <div class="media">
+                        <button class="btn btn-primary mt-3"
+                                onclick="ocultar('regresionLineal')">Cerrar
+                        </button>
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png" class ="oculto" style="width: 700px">
                     </div>
                 </div>
             </div>
@@ -218,8 +241,15 @@
                     <p class="description"><i>Árbol de decisión</i></p>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
-                                onclick="location.href='http://127.0.0.1:5000/'">Ver
+                                onclick="mostrar('decisionTree')">Ver
                         </button>
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png" class ="oculto" style="width: 700px">
+                    </div>
+                    <div class="media">
+                        <button class="btn btn-primary mt-3"
+                                onclick="ocultar('decisionTree')">Cerrar
+                        </button>
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png" class ="oculto" style="width: 700px">
                     </div>
                 </div>
             </div>
@@ -228,8 +258,15 @@
                     <p class="description"><i>Random forest</i></p>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
-                                onclick="location.href='http://127.0.0.1:5000/'">Ver
+                                onclick="mostrar('randomForest')">Ver
                         </button>
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png" class ="oculto" style="width: 700px">
+                    </div>
+                    <div class="media">
+                        <button class="btn btn-primary mt-3"
+                                onclick="ocultar('randomForest')">Cerrar
+                        </button>
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png" class ="oculto" style="width: 700px">
                     </div>
                 </div>
             </div>

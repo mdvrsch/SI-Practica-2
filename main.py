@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for
 from flask import render_template
 from flask import request
-from flask_login import LoginManager, current_user, login_user, logout_user
+#from flask_login import LoginManager, current_user, login_user, logout_user
 from hashlib import md5
 
 import json
@@ -212,6 +212,7 @@ def ejercicio5():
     return render_template('ejercicio5.html', graphJSON_ips=graphJSON_ips)
 
 
+'''
 # Login
 
 app.config['SECRET_KEY'] = 'sistemas'
@@ -264,6 +265,6 @@ def logout():
     logout_user()
     return redirect("/")
 
-
+'''
 if __name__ == '__main__':
     app.run(debug=True)
