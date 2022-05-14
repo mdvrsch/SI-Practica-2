@@ -1,41 +1,23 @@
 from flask_login import UserMixin
-from flask_wtf import FlaskForm
-from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired
 
 
 class User(UserMixin):
+    username = ""
 
-    def __init__(self, id, name, email, password, is_admin=False):
-        self.id = id
-        self.name = name
-        self.email = email
-        self.password = generate_password_hash(password)
-        self.is_admin = is_admin
+    def __init__(self, username):
+        self.username = username
 
-    def set_password(self, password):
-        self.password = generate_password_hash(password)
+    @property
+    def is_authenticated(self):
+        return True
 
-    def check_password(self, password):
-        return check_password_hash(self.password, password)
+    @property
+    def is_active(self):
+        return True
 
-    def __repr__(self):
-        return '<User {}>'.format(self.email)
+    @property
+    def is_anonymous(self):
+        return False
 
-
-users = []
-
-
-def get_user(email):
-    for user in users:
-        if user.email == email:
-            return user
-    return None
-
-
-class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Recuérdame')
-    submit = SubmitField('Login')
+    def get_id(self):
+        return self.username

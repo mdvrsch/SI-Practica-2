@@ -5,37 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Rubic landing page.">
     <meta name="author" content="Devcrud">
-    <title>Conexiones por día</title>
+    <title>Login</title>
     <!-- font icons -->
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + CMI main styles -->
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/css/rubic.css">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40">
-<div class="col-md-5 d-none d-md-block">
-    <form class="header-form" action="/login" method="post">
-        <div class="head">Login</div>
-        <div class="body">
-            <div class="form-group">
-                <input type="text"
-                       name="username"
-                       required
-                       maxlength="255" class="form-control" placeholder="Email*">
-            </div>
-            <div class="form-group">
-                <input type="password"
-                       name="password"
-                       required class="form-control" placeholder="Password*">
-            </div>
-            {{ error }}
+
+<section class="section has-img-bg text-center">
+    <div class="container text-center">
+        <h6 class="display-3 has-line">Login</h6>
+        <h5 class="mb-5 font-weight-light">Inicia sesión en nuestro CMI.</h5>
+        <div class="row justify-content-around">
+            <form class="header-form" action="/login" method="post">
+                <div class="head">Login</div>
+                <div class="body">
+                    <div class="form-group">
+                        <input type="text"
+                               name="username"
+                               required
+                               maxlength="255" class="form-control" placeholder="Username*">
+                    </div>
+                    <div class="form-group">
+                        <input type="password"
+                               name="password"
+                               required class="form-control" placeholder="Password*">
+                    </div>
+                    {{ error }}
+                </div>
+                <div class="footer">
+                    <button class="btn btn-primary btn-block" type="submit" value="Login" id="login_button">Iniciar
+                        sesión
+                    </button>
+                    <input type="hidden" value="{{ redirection }}" name="redirection">
+                </div>
+            </form>
         </div>
-        <div class="footer">
-            <button class="btn btn-primary btn-block" type="submit" value="Login" id="login_button">Iniciar sesión
-            </button>
-            <input type="hidden" value="{{ redirection }}" name="redirection">
+    </div>
+</section>
+<footer class="footer py-4 bg-dark text-light">
+    <div class="container text-center">
+        <div class="social-links">
+            <a href="https://www.facebook.com" class="link"><i class="ti-facebook"></i></a>
+            <a href="https://www.twitter.com" class="link"><i class="ti-twitter-alt"></i></a>
+            <a href="https://www.instagram.com" class="link"><i class="ti-instagram"></i></a>
+            <a href="https://www.pinterest.com" class="link"><i class="ti-pinterest-alt"></i></a>
         </div>
-    </form>
-</div>
+    </div>
+</footer>
 </body>
 </html>
 

@@ -45,6 +45,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#ejercicio6">Ejercicio 6</a>
                 </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary btn-block" href="http://127.0.0.1:5000/login">Login</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -56,33 +59,8 @@
                 <div class="header-content">
                     <h3 class="header-title"><strong class="text-primary">CMI</strong><span> web</span></h3>
                     <h4 class="header-subtitle">Cuadro de Mando Integral</h4>
-                    <p>Ayudamos en la toma de decisiones a la dirección de la empresa. ¡Conócenos!</p>
+                    <h5>Ayudamos en la toma de decisiones a la dirección de la empresa. ¡Conócenos!</h5>
                 </div>
-            </div>
-            <div class="col-md-5 d-none d-md-block">
-                <form class="header-form" action="/login" method="post">
-                    <div class="head">Login</div>
-                    <div class="body">
-                        <div class="form-group">
-                            <input type="text"
-                                   name="username"
-                                   required
-                                   maxlength="255" class="form-control" placeholder="Username*">
-                        </div>
-                        <div class="form-group">
-                            <input type="password"
-                                   name="password"
-                                   required class="form-control" placeholder="Password*">
-                        </div>
-                        {{ error }}
-                    </div>
-                    <div class="footer">
-                        <button class="btn btn-primary btn-block" type="submit" value="Login" id="login_button">Iniciar
-                            sesión
-                        </button>
-                        <input type="hidden" value="{{ redirection }}" name="redirection">
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -215,17 +193,17 @@
                         <button class="btn btn-primary mt-3"
                                 onclick="mostrar('regresionLineal')">Ver
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png?raw=true"
+                        <img src="http://127.0.0.1:5000/machine_learning/regresionLineal.png"
                              class="oculto"
-                             style="width: 700px" id="regresionLineal">
+                             style="width: 500px" id="regresionLineal">
                     </div>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
                                 onclick="ocultar('regresionLineal')">Cerrar
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png?raw=true"
+                        <img src="http://127.0.0.1:5000/machine_learning/regresionLineal.png"
                              class="oculto"
-                             style="width: 700px" id="regresionLineal">
+                             style="width: 500px" id="regresionLineal">
                     </div>
                 </div>
             </div>
@@ -236,17 +214,17 @@
                         <button class="btn btn-primary mt-3"
                                 onclick="mostrar('decisionTree')">Ver
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png?raw=true"
+                        <img src="http://127.0.0.1:5000/machine_learning/decisionTree.png"
                              class="oculto"
-                             style="width: 700px" id="decisionTree">
+                             style="width: 500px" id="decisionTree">
                     </div>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
                                 onclick="ocultar('decisionTree')">Cerrar
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png?raw=true"
+                        <img src="http://127.0.0.1:5000/machine_learning/decisionTree.png"
                              class="oculto"
-                             style="width: 700px" id="decisionTree">
+                             style="width: 500px" id="decisionTree">
                     </div>
                 </div>
             </div>
@@ -257,57 +235,22 @@
                         <button class="btn btn-primary mt-3"
                                 onclick="mostrar('randomForest')">Ver
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png?raw=true"
+                        <img src="http://127.0.0.1:5000/machine_learning/randomForest.png"
                              class="oculto"
-                             style="width: 700px" id="randomForest">
+                             style="width: 500px" id="randomForest">
                     </div>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
                                 onclick="ocultar('randomForest')">Cerrar
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png?raw=true"
+                        <img src="http://127.0.0.1:5000/machine_learning/randomForest.png"
                              class="oculto"
-                             style="width: 700px" id="randomForest">
+                             style="width: 500px" id="randomForest">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-</section>
-<section class="section has-img-bg text-center">
-    <div class="container">
-        <h6 class="display-3 has-line">STYLISH AXURE DESIGN</h6>
-        <h5 class="mb-5 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore,
-            itaque.</h5>
-        <button class="btn btn-outline-light btn-flat">Download</button>
-    </div>
-</section>
-<section class="section">
-    <div class="container text-center">
-        <h6 class="display-4 has-line">CONTACT US</h6>
-        <p class="mb-5 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-        <form>
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <div class="form-group pb-1">
-                        <input type="text" class="form-control" required placeholder="Name">
-                    </div>
-                    <div class="form-group pb-1">
-                        <input type="email" class="form-control" required placeholder="Email">
-                    </div>
-                    <div class="form-group ">
-                        <input type="text" class="form-control" placeholder="Subject">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <textarea name="" id="" cols="" rows="7" class="form-control" required
-                              placeholder="Message"></textarea>
-                </div>
-            </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Send Message">
-        </form>
     </div>
 </section>
 <footer class="footer py-4 bg-dark text-light">

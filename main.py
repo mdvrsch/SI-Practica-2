@@ -2,7 +2,9 @@ from flask import Flask, redirect, url_for
 from flask import render_template
 from flask import request
 from flask_login import LoginManager, current_user, login_user, logout_user
+from login import User
 from hashlib import md5
+from werkzeug.urls import url_parse
 
 import json
 import sqlite3
@@ -56,7 +58,7 @@ def index():
 # Ejercicio 2
 @app.route('/ejercicio2/usuarios/criticos', methods=['GET', 'POST'])
 def ejercicio2_usuariosCriticos():
-    con = sqlite3.connect('src/database.db')
+    con = sqlite3.connect('database.db')
     df_contra = dataframe_contra(con)
     df_users = dataframe_users(con)
 
@@ -87,7 +89,7 @@ def ejercicio2_usuariosCriticos():
 
 @app.route('/ejercicio2/webs/vulnerables', methods=['GET', 'POST'])
 def ejercicio2_websVulnerables():
-    con = sqlite3.connect('src/database.db')
+    con = sqlite3.connect('database.db')
     df_desactualizadas = dataframe_desactualizadas(con)
 
     x = 0
@@ -116,7 +118,7 @@ def ejercicio2_websVulnerables():
 # Ejercicio3
 @app.route('/ejercicio3/info/menos50', methods=['GET', 'POST'])
 def ejercicio3_menos50():
-    con = sqlite3.connect('src/database.db')
+    con = sqlite3.connect('database.db')
     df_emails = dataframe_emails(con)
 
     x = 0
@@ -147,7 +149,7 @@ def ejercicio3_menos50():
 
 @app.route('/ejercicio3/info/mas50', methods=['GET', 'POST'])
 def ejercicio3_mas50():
-    con = sqlite3.connect('src/database.db')
+    con = sqlite3.connect('database.db')
     df_emails = dataframe_emails(con)
 
     x = 0
@@ -201,7 +203,7 @@ def ejercicio4_vul():
 
 @app.route('/ejercicio5/ips')
 def ejercicio5ips():
-    con = sqlite3.connect('src/database.db')
+    con = sqlite3.connect('database.db')
     df_ips = dataframe_ips(con)
 
     fig = go.Figure(data=[go.Histogram(x=df_ips["nombre"], y=df_ips["ips"])])
@@ -215,7 +217,7 @@ def ejercicio5ips():
 # Número de conexiones por usuario
 @app.route('/ejercicio5/fechas')
 def ejercicio5fechas():
-    con = sqlite3.connect('src/database.db')
+    con = sqlite3.connect('database.db')
     df_fechas = dataframe_fechas(con)
 
     fig = go.Figure(data=[go.Histogram(x=df_fechas["nombre"], y=df_fechas["fechas"])])
@@ -226,20 +228,18 @@ def ejercicio5fechas():
     return render_template('ejercicio5fechas.html', graphJSON_fechas=graphJSON_fechas)
 
 
-'''
 # Login
-
 app.config['SECRET_KEY'] = 'sistemas'
 login_manager = LoginManager(app)
 login_manager.login_view = "/login"
 
-from login import User, LoginForm
-
-con = sqlite3.connect('src/database.db')
+con = sqlite3.connect('database.db')
 
 
-def get_user(username):
-    db_user = pd.read_sql_query("SELECT * FROM usuariosTable WHERE nombre=\'{}\'".format(username), con)
+def db_user(username):
+    db_user = pd.read_sql_query(
+        "SELECT nombre, contrasena FROM contrasenaTable WHERE nombre='%s'".format(username),
+        con)
     if db_user.size == 0:
         return None
     return db_user
@@ -247,38 +247,41 @@ def get_user(username):
 
 @login_manager.user_loader
 def user_loader(username):
-    if get_user(username) is not None:
+    if db_user(username) is not None:
         return User(username)
     return None
 
 
-from werkzeug.urls import url_parse
+@app.route('/login', methods=['GET'])
+def login_form():
+    form = request.args.get("next", default="/index")
+    form = form if form.startswith("/index") else "/index"
+    if current_user.is_authenticated:
+        return redirect(form)
+    if request.args.get("error", default="false") == "true":
+        return render_template("login.html", error="Incorrect username or password")
+    return render_template("login.html", redirection=form)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    form = LoginForm()
+        return redirect(request.form.get("redirection"))
     username = request.form.get("username")
     password = request.form.get("password")
-    user = get_user(username)
-    if form.validate_on_submit():
-        user = get_user(form.email.data)
-        if user is not None and user.iloc[0]["contrasena"] == md5(bytes(password, 'utf-8')).hexdigest():
-            login_user(user, remember=form.remember_me.data)
-            next_page = request.args.get('next')
-            if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('index')
-            return redirect(next_page)
-    return render_template('index.html', form=form)
+    user = db_user(username)
+    if user is not None and user.iloc[0]["contrasena"] == md5(bytes(password, 'utf-8')).hexdigest():
+        login_user(User(username))
+        return redirect(request.form.get("redirection"))
+    return redirect("/login?error=true")
 
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    logout_user()
-    return redirect("/")
+    if current_user.is_autenticated:
+        logout_user()
+    return render_template("index.html")
 
-'''
+
 if __name__ == '__main__':
     app.run(debug=True)
