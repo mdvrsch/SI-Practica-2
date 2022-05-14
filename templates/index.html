@@ -10,21 +10,10 @@
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + CMI main styles -->
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/css/rubic.css">
-    </script>
-    <script>
-      function mostrar(id)
-      {
-         var objeto=document.getElementById(id)
-            objeto.style.display="block";
-      }
-      function ocultar(id)
-      {
-         var objeto=document.getElementById(id)
-            objeto.style.display="none";
-      }
-   </script>
     <style>
-        .oculto {display:none;}
+        .oculto {
+            display: none;
+        }
     </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
@@ -196,18 +185,18 @@
         <h6 class="display-4 has-line">Otras funcionalidades</h6>
         <p class="mb-5 pb-4">Descubre el resto de funcionalidades que ofrece nuestro CMI.</p>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <h6 class="title mb-3">IPs por usuario</h6>
                 <p>Número de IPs de cada usuario.</p>
                 <button class="btn btn-primary mt-3"
                         onclick="location.href='http://127.0.0.1:5000/ejercicio5/ips'">Ver
                 </button>
             </div>
-            <div class="col-lg-4">
-                <h6 class="title mb-3">Conexiones al día por usuario.</h6>
+            <div class="col-lg-6">
+                <h6 class="title mb-3">Conexiones al día por usuario</h6>
                 <p>Número de conexiones al día por cada usuario.</p>
                 <button class="btn btn-primary mt-3"
-                        onclick="location.href='http://127.0.0.1:5000/ejercicio5'">Ver
+                        onclick="location.href='http://127.0.0.1:5000/ejercicio5/fechas'">Ver
                 </button>
             </div>
         </div>
@@ -226,13 +215,17 @@
                         <button class="btn btn-primary mt-3"
                                 onclick="mostrar('regresionLineal')">Ver
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png" class ="oculto" style="width: 700px" id="regresionLineal">
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png?raw=true"
+                             class="oculto"
+                             style="width: 700px" id="regresionLineal">
                     </div>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
                                 onclick="ocultar('regresionLineal')">Cerrar
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png" class ="oculto" style="width: 700px" id="regresionLineal">
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/regresionLineal.png?raw=true"
+                             class="oculto"
+                             style="width: 700px" id="regresionLineal">
                     </div>
                 </div>
             </div>
@@ -243,13 +236,17 @@
                         <button class="btn btn-primary mt-3"
                                 onclick="mostrar('decisionTree')">Ver
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png" class ="oculto" style="width: 700px" id="decisionTree">
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png?raw=true"
+                             class="oculto"
+                             style="width: 700px" id="decisionTree">
                     </div>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
                                 onclick="ocultar('decisionTree')">Cerrar
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png" class ="oculto" style="width: 700px" id="decisionTree">
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/decisionTree.png?raw=true"
+                             class="oculto"
+                             style="width: 700px" id="decisionTree">
                     </div>
                 </div>
             </div>
@@ -260,13 +257,17 @@
                         <button class="btn btn-primary mt-3"
                                 onclick="mostrar('randomForest')">Ver
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png" class ="oculto" style="width: 700px" id="randomForest">
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png?raw=true"
+                             class="oculto"
+                             style="width: 700px" id="randomForest">
                     </div>
                     <div class="media">
                         <button class="btn btn-primary mt-3"
                                 onclick="ocultar('randomForest')">Cerrar
                         </button>
-                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png" class ="oculto" style="width: 700px" id="randomForest">
+                        <img src="https://github.com/mdvrsch/SI-Practica-2/blob/main/randomForest.png?raw=true"
+                             class="oculto"
+                             style="width: 700px" id="randomForest">
                     </div>
                 </div>
             </div>
@@ -282,7 +283,7 @@
         <button class="btn btn-outline-light btn-flat">Download</button>
     </div>
 </section>
-<section class="section" id="ejercicio5">
+<section class="section">
     <div class="container text-center">
         <h6 class="display-4 has-line">CONTACT US</h6>
         <p class="mb-5 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -329,5 +330,16 @@
 <!-- Rubic js -->
 <script src="http://127.0.0.1:5000/static/assets/js/rubic.js"></script>
 
+<script>
+    function mostrar(id) {
+        var objeto = document.getElementById(id)
+        objeto.style.display = "block";
+    }
+
+    function ocultar(id) {
+        var objeto = document.getElementById(id)
+        objeto.style.display = "none";
+    }
+</script>
 </body>
 </html>

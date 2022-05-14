@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Rubic landing page.">
     <meta name="author" content="Devcrud">
-    <title>Menos del 50%</title>
+    <title>Conexiones por día</title>
     <!-- font icons -->
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + CMI main styles -->
@@ -15,26 +15,14 @@
 
 <section class="section">
     <div class="container text-center">
-     <form method="POST">
-                Selecciona el Top X:<br>
-                <input type="text" name="tag"><br>
-                <input type="submit" value="Submit">
-            </form>
-        <h6 class="display-4 has-line">Top X de usuarios críticos</h6>
-        <p class="mb-5 pb-4">Selecciona el número de usuarios críticos que quieras ver que hayan pulsado menos del 50%
-            de
-            veces en emails de spam.</p>
+        <h6 class="display-4 has-line">Número de conexiones por usuario</h6>
+        <p class="mb-5 pb-4">El gráfico muestra el número de conexiones de cada usuario.</p>
         <div class="container text-center">
-            <form method="POST">
-                Selecciona el Top X:<br>
-                <input type="text" name="tag"><br>
-                <input type="submit" value="Submit">
-            </form>
-            {% if graphJSON_menos %}
+            {% if graphJSON_fechas %}
                 <div id='chart' class='chart' ”></div>
                 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
                 <script type='text/javascript'>
-                    var graphs = {{graphJSON_menos | safe}};
+                    var graphs = {{graphJSON_fechas | safe}};
                     Plotly.plot('chart', graphs, {});
                 </script>
             {% endif %}

@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for
 from flask import render_template
 from flask import request
-#from flask_login import LoginManager, current_user, login_user, logout_user
+from flask_login import LoginManager, current_user, login_user, logout_user
 from hashlib import md5
 
 import json
@@ -56,7 +56,7 @@ def index():
 # Ejercicio 2
 @app.route('/ejercicio2/usuarios/criticos', methods=['GET', 'POST'])
 def ejercicio2_usuariosCriticos():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('src/database.db')
     df_contra = dataframe_contra(con)
     df_users = dataframe_users(con)
 
@@ -87,7 +87,7 @@ def ejercicio2_usuariosCriticos():
 
 @app.route('/ejercicio2/webs/vulnerables', methods=['GET', 'POST'])
 def ejercicio2_websVulnerables():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('src/database.db')
     df_desactualizadas = dataframe_desactualizadas(con)
 
     x = 0
@@ -116,7 +116,7 @@ def ejercicio2_websVulnerables():
 # Ejercicio3
 @app.route('/ejercicio3/info/menos50', methods=['GET', 'POST'])
 def ejercicio3_menos50():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('src/database.db')
     df_emails = dataframe_emails(con)
 
     x = 0
@@ -147,7 +147,7 @@ def ejercicio3_menos50():
 
 @app.route('/ejercicio3/info/mas50', methods=['GET', 'POST'])
 def ejercicio3_mas50():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect('src/database.db')
     df_emails = dataframe_emails(con)
 
     x = 0
@@ -199,9 +199,9 @@ def ejercicio4_vul():
 
 # Número de ips usadas por usuario
 
-@app.route('/ejercicio5/ips', methods=['GET', 'POST'])
-def ejercicio5():
-    con = sqlite3.connect('database.db')
+@app.route('/ejercicio5/ips')
+def ejercicio5ips():
+    con = sqlite3.connect('src/database.db')
     df_ips = dataframe_ips(con)
 
     fig = go.Figure(data=[go.Histogram(x=df_ips["nombre"], y=df_ips["ips"])])
@@ -209,7 +209,21 @@ def ejercicio5():
     import plotly
     a = plotly.utils.PlotlyJSONEncoder
     graphJSON_ips = json.dumps(fig, cls=a)
-    return render_template('ejercicio5.html', graphJSON_ips=graphJSON_ips)
+    return render_template('ejercicio5ips.html', graphJSON_ips=graphJSON_ips)
+
+
+# Número de conexiones por usuario
+@app.route('/ejercicio5/fechas')
+def ejercicio5fechas():
+    con = sqlite3.connect('src/database.db')
+    df_fechas = dataframe_fechas(con)
+
+    fig = go.Figure(data=[go.Histogram(x=df_fechas["nombre"], y=df_fechas["fechas"])])
+
+    import plotly
+    a = plotly.utils.PlotlyJSONEncoder
+    graphJSON_fechas = json.dumps(fig, cls=a)
+    return render_template('ejercicio5fechas.html', graphJSON_fechas=graphJSON_fechas)
 
 
 '''
@@ -221,7 +235,7 @@ login_manager.login_view = "/login"
 
 from login import User, LoginForm
 
-con = sqlite3.connect('database.db')
+con = sqlite3.connect('src/database.db')
 
 
 def get_user(username):

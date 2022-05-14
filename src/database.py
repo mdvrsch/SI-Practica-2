@@ -10,6 +10,7 @@ with open('legal.json') as file:
 with open('contrasenas.json') as file:
     data_contrasenas = json.load(file)
 
+
 def sql_create_table(con):
     cursos_obj = con.cursor()
 
