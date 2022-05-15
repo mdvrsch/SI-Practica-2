@@ -1,10 +1,10 @@
 from flask import Flask, redirect, url_for
 from flask import render_template
 from flask import request
-from flask_login import LoginManager, current_user, login_user, logout_user
-from login import User
-from hashlib import md5
-from werkzeug.urls import url_parse
+#from flask_login import LoginManager, current_user, login_user, logout_user
+#from login import User
+#from hashlib import md5
+#from werkzeug.urls import url_parse
 
 import json
 import sqlite3
@@ -227,7 +227,7 @@ def ejercicio5fechas():
     graphJSON_fechas = json.dumps(fig, cls=a)
     return render_template('ejercicio5fechas.html', graphJSON_fechas=graphJSON_fechas)
 
-
+'''
 # Login
 app.config['SECRET_KEY'] = 'sistemas'
 login_manager = LoginManager(app)
@@ -281,7 +281,7 @@ def logout():
     if current_user.is_autenticated:
         logout_user()
     return render_template("index.html")
-
+'''
 
 if __name__ == '__main__':
     app.run(debug=True)
