@@ -1,10 +1,10 @@
 from flask import Flask, redirect, url_for
 from flask import render_template
 from flask import request
-#from flask_login import LoginManager, current_user, login_user, logout_user
-#from login import User
-#from hashlib import md5
-#from werkzeug.urls import url_parse
+# from flask_login import LoginManager, current_user, login_user, logout_user
+# from login import User
+# from hashlib import md5
+# from werkzeug.urls import url_parse
 
 import json
 import sqlite3
@@ -214,6 +214,7 @@ def ejercicio5ips():
     return render_template('ejercicio5ips.html', graphJSON_ips=graphJSON_ips)
 
 
+'''
 # Número de conexiones por usuario
 @app.route('/ejercicio5/fechas')
 def ejercicio5fechas():
@@ -226,6 +227,32 @@ def ejercicio5fechas():
     a = plotly.utils.PlotlyJSONEncoder
     graphJSON_fechas = json.dumps(fig, cls=a)
     return render_template('ejercicio5fechas.html', graphJSON_fechas=graphJSON_fechas)
+'''
+
+
+# Productos asociados a Microsot
+@app.route('/ejercicio5/microsoft')
+def ejercicio5microsoft():
+    response = requests.get("https://cve.circl.lu/api/browse/microsoft")
+
+    json_info = response.text
+    df_prod = pd.DataFrame()
+    df_prod["product"] = pd.read_json(json_info)["product"]
+
+    fig = go.Figure(data=[go.Table(
+        header=dict(values=["Product"],
+                    fill_color='orange',
+                    align='center'),
+        cells=dict(values=[df_prod["product"]],
+                   fill_color='lightgrey',
+                   align='left'))
+    ])
+
+    import plotly
+    a = plotly.utils.PlotlyJSONEncoder
+    graphJSON_micro = json.dumps(fig, cls=a)
+    return render_template('ejercicio5microsoft.html', graphJSON_micro=graphJSON_micro)
+
 
 '''
 # Login

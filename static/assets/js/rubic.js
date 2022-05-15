@@ -30,3 +30,9 @@ $(document).ready(function () {
         }
     });
 });
+
+// popup image
+
+$(document).ready(function () {
+    $('.image-link').magnificPopup({type: 'image'});
+});

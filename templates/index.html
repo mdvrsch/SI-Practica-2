@@ -10,11 +10,7 @@
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + CMI main styles -->
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/css/rubic.css">
-    <style>
-        .oculto {
-            display: none;
-        }
-    </style>
+
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -171,10 +167,10 @@
                 </button>
             </div>
             <div class="col-lg-6">
-                <h6 class="title mb-3">Conexiones al día por usuario</h6>
-                <p>Número de conexiones al día por cada usuario.</p>
+                <h6 class="title mb-3">Productos asociados a Microsoft</h6>
+                <p>Consulta los productos asociados a <strong>Microsoft</strong> según el CVE.</p>
                 <button class="btn btn-primary mt-3"
-                        onclick="location.href='http://127.0.0.1:5000/ejercicio5/fechas'">Ver
+                        onclick="location.href='http://127.0.0.1:5000/ejercicio5/microsoft'">Ver
                 </button>
             </div>
         </div>
@@ -190,20 +186,8 @@
                 <div class="testmonial">
                     <p class="description"><i>Regresión lineal</i></p>
                     <div class="media">
-                        <button class="btn btn-primary mt-3"
-                                onclick="mostrar('regresionLineal')">Ver
-                        </button>
-                        <img src="https://ibb.co/ZKzgcYJ"
-                             class="oculto"
-                             style="width: 500px" id="regresionLineal">
-                    </div>
-                    <div class="media">
-                        <button class="btn btn-primary mt-3"
-                                onclick="ocultar('regresionLineal')">Cerrar
-                        </button>
-                        <img src="https://ibb.co/ZKzgcYJ"
-                             class="oculto"
-                             style="width: 500px" id="regresionLineal">
+                        <button class="btn-dark"><a class="image-link" href="https://raw.githubusercontent.com/mdvrsch/SI-Practica-2/main/machine_learning/regresionLineal.png
+">Ver</a></button>
                     </div>
                 </div>
             </div>
@@ -211,20 +195,8 @@
                 <div class="testmonial">
                     <p class="description"><i>Árbol de decisión</i></p>
                     <div class="media">
-                        <button class="btn btn-primary mt-3"
-                                onclick="mostrar('decisionTree')">Ver
-                        </button>
-                        <img src="https://ibb.co/z2JDtBF"
-                             class="oculto"
-                             style="width: 500px" id="decisionTree">
-                    </div>
-                    <div class="media">
-                        <button class="btn btn-primary mt-3"
-                                onclick="ocultar('decisionTree')">Cerrar
-                        </button>
-                        <img src="https://ibb.co/z2JDtBF"
-                             class="oculto"
-                             style="width: 500px" id="decisionTree">
+                        <button class="btn-dark"><a class="image-link" href="https://raw.githubusercontent.com/mdvrsch/SI-Practica-2/main/machine_learning/decisionTree.png
+">Ver</a></button>
                     </div>
                 </div>
             </div>
@@ -232,20 +204,8 @@
                 <div class="testmonial">
                     <p class="description"><i>Random forest</i></p>
                     <div class="media">
-                        <button class="btn btn-primary mt-3"
-                                onclick="mostrar('randomForest')">Ver
-                        </button>
-                        <img src="https://ibb.co/6NW6w6b"
-                             class="oculto"
-                             style="width: 500px" id="randomForest">
-                    </div>
-                    <div class="media">
-                        <button class="btn btn-primary mt-3"
-                                onclick="ocultar('randomForest')">Cerrar
-                        </button>
-                        <img src="https://ibb.co/6NW6w6b"
-                             class="oculto"
-                             style="width: 500px" id="randomForest">
+                        <button class="btn-dark"><a class="image-link" href="https://raw.githubusercontent.com/mdvrsch/SI-Practica-2/main/machine_learning/randomForest.png
+">Ver</a></button>
                     </div>
                 </div>
             </div>
@@ -273,16 +233,5 @@
 <!-- Rubic js -->
 <script src="http://127.0.0.1:5000/static/assets/js/rubic.js"></script>
 
-<script>
-    function mostrar(id) {
-        var objeto = document.getElementById(id)
-        objeto.style.display = "block";
-    }
-
-    function ocultar(id) {
-        var objeto = document.getElementById(id)
-        objeto.style.display = "none";
-    }
-</script>
 </body>
 </html>
