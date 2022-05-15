@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Rubic landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Login succesfull</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + CMI main styles -->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/css/rubic.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40">
+<section class="section has-img-bg text-center">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-6">
+                <button class="btn btn-primary mt-3"
+                        onclick="location.href='{{ url_for('index') }}'">Home
+                </button>
+            </div>
+            <div class="col-lg-6">
+                {% if current_user.is_anonymous %}
+                    <button class="btn btn-primary mt-3"
+                            onclick="location.href='{{ url_for('login') }}'">Login
+                    </button>
+                    <button class="btn btn-primary mt-3"
+                            onclick="location.href='{{ url_for('show_signup_form') }}'">Sing-up
+                    </button>
+
+                {% else %}
+                    <h1>Bienvenido {{ current_user.name }}</h1>
+                    <button class="btn btn-primary mt-3"
+                            onclick="location.href='{{ url_for('logout') }}'">Logout
+                    </button>
+                {% endif %}
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+
+</section>
+<footer class="footer py-4 bg-dark text-light">
+    <div class="container text-center">
+        <div class="social-links">
+            <a href="https://www.facebook.com" class="link"><i class="ti-facebook"></i></a>
+            <a href="https://www.twitter.com" class="link"><i class="ti-twitter-alt"></i></a>
+            <a href="https://www.instagram.com" class="link"><i class="ti-instagram"></i></a>
+            <a href="https://www.pinterest.com" class="link"><i class="ti-pinterest-alt"></i></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

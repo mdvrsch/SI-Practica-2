@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Rubic landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Sing-up</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + CMI main styles -->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/assets/css/rubic.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40">
+
+<section class="section has-img-bg text-center">
+    <div class="container text-center">
+        <h6 class="display-3 has-line">Registro</h6>
+        <h5 class="mb-5 font-weight-light">Registrate en nuestro CMI.</h5>
+        <div class="row justify-content-around">
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.name.label}}
+                    {{ form.name(size=24) }}<br>
+                    {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(size=24) }}<br>
+                    {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    {{ form.password.label }}
+                    {{ form.password(size=24) }}<br>
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    {{ form.submit() }}
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="footer py-4 bg-dark text-light">
+    <div class="container text-center">
+        <div class="social-links">
+            <a href="https://www.facebook.com" class="link"><i class="ti-facebook"></i></a>
+            <a href="https://www.twitter.com" class="link"><i class="ti-twitter-alt"></i></a>
+            <a href="https://www.instagram.com" class="link"><i class="ti-instagram"></i></a>
+            <a href="https://www.pinterest.com" class="link"><i class="ti-pinterest-alt"></i></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+
