@@ -1,16 +1,11 @@
 from flask import Flask, redirect, url_for
 from flask import render_template
 from flask import request
-<< << << < Updated
-upstream
 
-== == == =
 from flask_login import LoginManager, current_user, login_user, logout_user, login_manager
 from werkzeug.urls import url_parse
 from forms import LoginForm, SignupForm
 from login import users, get_user, User
->> >> >> > Stashed
-changes
 
 import json
 import sqlite3
